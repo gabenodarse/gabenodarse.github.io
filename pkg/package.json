@@ -1,0 +1,17 @@
+{
+  "name": "music-mercenary",
+  "collaborators": [
+    "gnodarse <gabenodarse@yahoo.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "music_mercenary_bg.wasm",
+    "music_mercenary.js",
+    "music_mercenary.d.ts"
+  ],
+  "module": "music_mercenary.js",
+  "types": "music_mercenary.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
