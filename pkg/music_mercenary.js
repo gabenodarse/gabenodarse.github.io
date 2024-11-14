@@ -204,13 +204,13 @@ function getInt32Memory0() {
 export const Input = Object.freeze({ Dash:0,"0":"Dash",Slash1:1,"1":"Slash1",Slash2:2,"2":"Slash2",Slash3:3,"3":"Slash3", });
 /**
 */
-export const GraphicFlags = Object.freeze({ HorizontalFlip:1,"1":"HorizontalFlip",VerticalFlip:2,"2":"VerticalFlip",Opacity:4,"4":"Opacity", });
-/**
-*/
 export const GraphicGroup = Object.freeze({ Background:0,"0":"Background",Standing:1,"1":"Standing",Walking:2,"2":"Walking",Running:3,"3":"Running",Slashing1:4,"4":"Slashing1",Slashing2:5,"5":"Slashing2",Slashing3:6,"6":"Slashing3",Brick1:7,"7":"Brick1",Brick2:8,"8":"Brick2",Brick3:9,"9":"Brick3",Brick1Segment:10,"10":"Brick1Segment",Brick2Segment:11,"11":"Brick2Segment",Brick3Segment:12,"12":"Brick3Segment",Dash0:13,"13":"Dash0",Dash1:14,"14":"Dash1",Dash2:15,"15":"Dash2",Dash3:16,"16":"Dash3",PreHolding1:17,"17":"PreHolding1",PreHolding2:18,"18":"PreHolding2",PreHolding3:19,"19":"PreHolding3",Holding1:20,"20":"Holding1",Holding2:21,"21":"Holding2",Holding3:22,"22":"Holding3",Hold1:23,"23":"Hold1",Hold2:24,"24":"Hold2",Hold3:25,"25":"Hold3", });
 /**
 */
 export const BrickType = Object.freeze({ Type1:0,"0":"Type1",Type2:1,"1":"Type2",Type3:2,"2":"Type3", });
+/**
+*/
+export const GraphicFlags = Object.freeze({ HorizontalFlip:1,"1":"HorizontalFlip",VerticalFlip:2,"2":"VerticalFlip",Opacity:4,"4":"Opacity", });
 
 const BrickDataFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }

@@ -52,13 +52,6 @@ export enum Input {
 }
 /**
 */
-export enum GraphicFlags {
-  HorizontalFlip = 1,
-  VerticalFlip = 2,
-  Opacity = 4,
-}
-/**
-*/
 export enum GraphicGroup {
   Background = 0,
   Standing = 1,
@@ -93,6 +86,13 @@ export enum BrickType {
   Type1 = 0,
   Type2 = 1,
   Type3 = 2,
+}
+/**
+*/
+export enum GraphicFlags {
+  HorizontalFlip = 1,
+  VerticalFlip = 2,
+  Opacity = 4,
 }
 /**
 */
