@@ -1,5 +1,6 @@
 {
   "name": "music-mercenary",
+  "type": "module",
   "collaborators": [
     "gnodarse <gabenodarse@yahoo.com>"
   ],
@@ -9,7 +10,7 @@
     "music_mercenary.js",
     "music_mercenary.d.ts"
   ],
-  "module": "music_mercenary.js",
+  "main": "music_mercenary.js",
   "types": "music_mercenary.d.ts",
   "sideEffects": [
     "./snippets/*"

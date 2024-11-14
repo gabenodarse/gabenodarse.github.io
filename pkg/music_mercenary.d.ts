@@ -44,25 +44,18 @@ export function graphic_size(g: GraphicGroup): Position;
 export function num_graphic_groups(): number;
 /**
 */
+export enum GraphicFlags {
+  HorizontalFlip = 1,
+  VerticalFlip = 2,
+  Opacity = 4,
+}
+/**
+*/
 export enum Input {
   Dash = 0,
   Slash1 = 1,
   Slash2 = 2,
   Slash3 = 3,
-}
-/**
-*/
-export enum BrickType {
-  Type1 = 0,
-  Type2 = 1,
-  Type3 = 2,
-}
-/**
-*/
-export enum GraphicFlags {
-  HorizontalFlip = 1,
-  VerticalFlip = 2,
-  Opacity = 4,
 }
 /**
 */
@@ -93,6 +86,13 @@ export enum GraphicGroup {
   Hold1 = 23,
   Hold2 = 24,
   Hold3 = 25,
+}
+/**
+*/
+export enum BrickType {
+  Type1 = 0,
+  Type2 = 1,
+  Type3 = 2,
 }
 /**
 */
@@ -196,8 +196,9 @@ export class Game {
   bricks(): Array<any>;
 /**
 * @param {Input} input
+* @param {number} time_since_tick
 */
-  input_command(input: Input): void;
+  input_command(input: Input, time_since_tick: number): void;
 /**
 * @param {Input} input
 */
@@ -312,7 +313,7 @@ export interface InitOutput {
   readonly game_bricks_broken: (a: number) => number;
   readonly game_game_data: (a: number) => number;
   readonly game_bricks: (a: number) => number;
-  readonly game_input_command: (a: number, b: number) => void;
+  readonly game_input_command: (a: number, b: number, c: number) => void;
   readonly game_stop_command: (a: number, b: number) => void;
   readonly game_select_brick: (a: number, b: number, c: number) => number;
   readonly game_add_brick: (a: number, b: number) => void;
@@ -380,15 +381,15 @@ export interface InitOutput {
   readonly brickdata_x: (a: number) => number;
   readonly brickdata_approx_time: (a: number, b: number) => number;
   readonly brickdata_closest_beat_pos: (a: number, b: number) => number;
+  readonly __wbg_get_positionedgraphic_x: (a: number) => number;
+  readonly __wbg_get_positionedgraphic_y: (a: number) => number;
+  readonly __wbg_get_position_x: (a: number) => number;
+  readonly __wbg_get_position_y: (a: number) => number;
   readonly __wbg_set_renderinginstructions_num_graphics: (a: number, b: number) => void;
   readonly __wbg_set_positionedgraphic_x: (a: number, b: number) => void;
   readonly __wbg_set_positionedgraphic_y: (a: number, b: number) => void;
   readonly __wbg_set_position_x: (a: number, b: number) => void;
   readonly __wbg_set_position_y: (a: number, b: number) => void;
-  readonly __wbg_get_positionedgraphic_x: (a: number) => number;
-  readonly __wbg_get_positionedgraphic_y: (a: number) => number;
-  readonly __wbg_get_position_x: (a: number) => number;
-  readonly __wbg_get_position_y: (a: number) => number;
   readonly max_graphics: (a: number) => number;
   readonly graphic_size: (a: number) => number;
   readonly num_graphic_groups: () => number;
