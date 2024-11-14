@@ -44,18 +44,10 @@ export function graphic_size(g: GraphicGroup): Position;
 export function num_graphic_groups(): number;
 /**
 */
-export enum GraphicFlags {
-  HorizontalFlip = 1,
-  VerticalFlip = 2,
-  Opacity = 4,
-}
-/**
-*/
-export enum Input {
-  Dash = 0,
-  Slash1 = 1,
-  Slash2 = 2,
-  Slash3 = 3,
+export enum BrickType {
+  Type1 = 0,
+  Type2 = 1,
+  Type3 = 2,
 }
 /**
 */
@@ -89,10 +81,18 @@ export enum GraphicGroup {
 }
 /**
 */
-export enum BrickType {
-  Type1 = 0,
-  Type2 = 1,
-  Type3 = 2,
+export enum GraphicFlags {
+  HorizontalFlip = 1,
+  VerticalFlip = 2,
+  Opacity = 4,
+}
+/**
+*/
+export enum Input {
+  Dash = 0,
+  Slash1 = 1,
+  Slash2 = 2,
+  Slash3 = 3,
 }
 /**
 */
