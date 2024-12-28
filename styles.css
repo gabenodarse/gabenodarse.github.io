@@ -1,0 +1,289 @@
+body {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+canvas{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#screen{
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+#overlay{
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-family: Arial;
+	z-index: 100;
+}
+
+#homescreen{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: #6655dd;
+	user-select: none;
+	display: block;
+}
+
+#homescreen h1{
+	margin: 0 auto;
+	font-size: 6em;
+}
+
+#homescreen h2{
+	margin: 0 auto;
+	font-size: 4em;
+}
+
+.game-overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	user-select: none;
+	display: block;
+}
+
+.home-songs-div{
+	position: absolute;
+	top: 8em;
+	left: 0;
+	width: 50%;
+	height: 100vh;
+}
+
+.home-controls-div{
+	position: absolute;
+	top: 8em;
+	left: 50%;
+	width: 50%;
+	height: 100vh;
+}
+
+.home-controls-div p{
+	text-align: left;
+	margin: 0;
+	font-size: 2em;
+}
+
+.home-controls-div p img{
+	height: 2em;
+}
+
+.log-link{
+	position: absolute;
+	right: 4%;
+	bottom: 4%;
+}
+
+.home-selection{
+	margin: 2% 4% 0 0;
+	height: 16%;
+	width: 80%;
+	font-size: 1.3em;
+	background-color: #ffdd00;
+	text-align: center;
+}
+
+.home-selection p{
+	margin: 1% 0 0 0;
+}
+
+.highlighted-home-selection{
+	outline: 4px solid cyan;
+}
+
+.end-game-screen{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100%;
+	font-size: 3em;
+	background-color: #5577ff;
+	user-select: none;
+	display: block;
+}
+
+.end-game-screen p{
+	margin: 16px 0 0 0;
+}
+
+.end-game-screen-text-div{
+	background-color: #9999ff;
+}
+
+.editor-overlay{
+	width: 100%;
+	height: 100vh;
+	display: block;
+}
+
+.editor-controls{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: rgba(100, 100, 100, 0.4);
+}
+
+.editor-ranges-div{
+	width: 90%;
+	margin-left: 5%;
+}
+
+.editor-buttons-div{
+	position: absolute;
+	width: 5%;
+	left: 0;
+	top: 0;
+	height: 100%;
+}
+
+.editor-broad-range{
+	width: 100%;
+	display: block;
+}
+
+.editor-precise-range{
+	width: 25%;
+	display: block;
+}
+
+.score{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 4%;
+	width: 10%;
+	font-size: 5vw;
+	margin-top: 4%;
+	user-select: none;
+}
+
+.score p{
+	margin: 0;
+}
+
+.fps{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 4%;
+	width: 40%;
+	font-size: 1vw;
+	margin: 0;
+	user-select: none;
+}
+
+.fps p{
+	margin: 0;
+	text-align: left;
+}
+
+.menu{
+	position: absolute;
+	top: 10%;
+	left: 40%;
+	height: 70%;
+	width: 30%;
+	font-size: 3em;
+	background-color: #9999ff;
+	z-index: 200;
+}
+
+.menu-selection{
+	width: 100%;
+	height: 20%;
+	margin-bottom: 2px;
+}
+
+.highlighted-menu-selection{
+	outline: 4px solid cyan;
+}
+
+.menu-selection p{
+	margin: 0;
+	user-select: none;
+}
+
+.get-input-dialog{
+	position: absolute;
+	font-size: 1rem;
+	top: 10px;
+	background-color: #aaaaaa;
+	z-index: 300;
+}
+
+.dialog-form-div{
+	width: 100%;
+	padding-bottom: 2rem;
+}
+
+.dialog-buttons-div{
+	width: 100%;
+	height: 2rem;
+	bottom: 0;
+}
+
+.full-sized{
+	width: 100%;
+	height: 100%;
+}
+
+@media(max-aspect-ratio: 8/5){
+	#screen{
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 0;
+		width: 100vw;
+		height: 62.5vw;
+	}
+
+	#overlay{
+		width: 100vw;
+		height: 62.5vw;
+	}
+
+	.homescreen{
+		width: 100vw;
+		height: 62.5vw;
+	}
+	.end-game-screen{
+		height: 100vw;
+		width: 62.5vw;
+	}
+
+	.editor-overlay{
+		width: 100vw;
+		height: 62.5vw;
+	}
+}
+
+@media(min-aspect-ratio: 2.5){
+	#screen{
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 0;
+		width: 250vh;
+		height: 100vh;
+	}
+}
