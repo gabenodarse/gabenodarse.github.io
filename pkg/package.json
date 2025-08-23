@@ -1,17 +1,17 @@
 {
-  "name": "music-mercenary",
+  "name": "rhythm_warrior",
   "type": "module",
   "collaborators": [
     "gnodarse <gabenodarse@yahoo.com>"
   ],
   "version": "0.1.0",
   "files": [
-    "music_mercenary_bg.wasm",
-    "music_mercenary.js",
-    "music_mercenary.d.ts"
+    "rhythm_warrior_bg.wasm",
+    "rhythm_warrior.js",
+    "rhythm_warrior.d.ts"
   ],
-  "main": "music_mercenary.js",
-  "types": "music_mercenary.d.ts",
+  "main": "rhythm_warrior.js",
+  "types": "rhythm_warrior.d.ts",
   "sideEffects": [
     "./snippets/*"
   ]
