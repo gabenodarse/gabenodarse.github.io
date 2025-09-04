@@ -9,7 +9,7 @@ export function game_rendering_instructions(a: number): number;
 export function game_game_data(a: number): number;
 export function game_bricks(a: number): number;
 export function game_input_command(a: number, b: number, c: number): void;
-export function game_stop_command(a: number, b: number): void;
+export function game_stop_command(a: number, b: number, c: number): void;
 export function game_initial_load_add_brick(a: number, b: number): void;
 export function game_add_brick(a: number, b: number): void;
 export function game_select_brick(a: number, b: number, c: number): number;

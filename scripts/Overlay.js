@@ -9,7 +9,9 @@ g_keyCodeNames[13] = "Enter";
 // TODO all these classes have a DOMelement function, can make them all inherit from a DOMWrapper class
 
 // main overlay class. all overlay elements are children, directly or nested
-export function Overlay(game, controlsMap){
+export function Overlay(){
+	this.preInitScreen;
+	
 	this.game;
 	this.controlsMap;
 
@@ -18,15 +20,9 @@ export function Overlay(game, controlsMap){
 	this.capturingComponent;
 	this.currentOverlay;
 	
-	this.game = game;
-	this.controlsMap = controlsMap;
-
 	this.overlayDiv = document.createElement("div");
 	this.overlayDiv.id = "overlay";
-
 	document.getElementById("screen").appendChild(this.overlayDiv);
-
-	this.goToHomeScreen();
 }
 
 // class for the overlay active when the game is running
@@ -694,7 +690,7 @@ function NewSongDialog(overlayParent, menuParent){
 		}
 		else{
 			game.newSong(name, artist, difficulty, bpm, brickSpeed, duration, songStartOffset, songFile.name, jsonFileName);
-			game.loadMP3(songFile);
+			game.loadNewAudio(songFile);
 		}
 
 		return "wait-song-load";
@@ -853,7 +849,7 @@ function ModifySongDialog(overlayParent, menuParent){
 		let songFileName = songData.filename;
 		
 		if(songFile){
-			game.loadMP3(songFile);
+			game.loadNewAudio(songFile);
 			songFileName = songFile.name;
 			this.fileInputLabel.innerHTML = "Modified ";
 		}
@@ -989,6 +985,58 @@ function LoadSongDialog(overlayParent, menuParent){
 	this.formDiv.appendChild(this.jsonFileInput);
 }
 Object.setPrototypeOf(LoadSongDialog.prototype, GetInputDialog.prototype);
+
+Overlay.prototype.preInit = function(initFunction){
+	this.preInitScreen = document.createElement("div");
+	this.preInitScreen.id = "pre-init-screen";
+	
+	let txt = document.createElement("p");
+	txt.innerHTML = "Press any key to load";
+	this.preInitScreen.appendChild(txt);
+	this.overlayDiv.appendChild(this.preInitScreen);
+	
+	let clickListener = () => {
+		window.removeEventListener("keydown", clickListener);
+		
+		initFunction();
+	};
+	
+	window.addEventListener("keydown", clickListener);
+}
+
+Overlay.prototype.updatePreInit = function(progressAmt){
+	if(this.preInitScreen){
+		while(this.preInitScreen.lastChild){
+			this.preInitScreen.removeChild(this.preInitScreen.lastChild);
+		}
+		
+		let txt = document.createElement("p");
+		txt.innerHTML = "Loading";
+		
+		let progressBackground = document.createElement("div");
+		progressBackground.className = "progress-background";
+		
+		let progressBar = document.createElement("div");
+		progressBar.className = "progress";
+		progressBar.style.width = (progressAmt * 100).toString() + "%";
+		
+		this.preInitScreen.appendChild(txt);
+		this.preInitScreen.appendChild(progressBackground);
+		progressBackground.appendChild(progressBar);
+	}
+}
+
+Overlay.prototype.initGame = function(game, controlsMap){
+	this.game = game;
+	this.controlsMap = controlsMap;
+	
+	if(this.preInitScreen){
+		this.preInitScreen.remove(); // TODO garbage collection problems with not removing children of preInitScreen?
+		this.preInitScreen = undefined;
+	}
+	
+	this.goToHomeScreen();
+}
 
 Overlay.prototype.goToGameOverlay = function(){
 	this.removeCurrentOverlay();

@@ -44,23 +44,18 @@ export function graphic_size(g: GraphicGroup): Position;
 export function num_graphic_groups(): number;
 /**
 */
-export enum SoundEffect {
-  NoteHit = 0,
-  NoteSegmentHit = 1,
-}
-/**
-*/
-export enum BrickType {
-  Type1 = 0,
-  Type2 = 1,
-  Type3 = 2,
-}
-/**
-*/
 export enum GraphicFlags {
   HorizontalFlip = 1,
   VerticalFlip = 2,
   Opacity = 4,
+}
+/**
+*/
+export enum Input {
+  Dash = 0,
+  Slash1 = 1,
+  Slash2 = 2,
+  Slash3 = 3,
 }
 /**
 */
@@ -97,11 +92,16 @@ export enum GraphicGroup {
 }
 /**
 */
-export enum Input {
-  Dash = 0,
-  Slash1 = 1,
-  Slash2 = 2,
-  Slash3 = 3,
+export enum BrickType {
+  Type1 = 0,
+  Type2 = 1,
+  Type3 = 2,
+}
+/**
+*/
+export enum SoundEffect {
+  NoteHit = 0,
+  NoteSegmentHit = 1,
 }
 /**
 */
@@ -221,8 +221,9 @@ export class Game {
   input_command(input: Input, time_since_tick: number): void;
 /**
 * @param {Input} input
+* @param {number} time_since_tick
 */
-  stop_command(input: Input): void;
+  stop_command(input: Input, time_since_tick: number): void;
 /**
 * @param {BrickData} brick_data
 */
@@ -341,7 +342,7 @@ export interface InitOutput {
   readonly game_game_data: (a: number) => number;
   readonly game_bricks: (a: number) => number;
   readonly game_input_command: (a: number, b: number, c: number) => void;
-  readonly game_stop_command: (a: number, b: number) => void;
+  readonly game_stop_command: (a: number, b: number, c: number) => void;
   readonly game_initial_load_add_brick: (a: number, b: number) => void;
   readonly game_add_brick: (a: number, b: number) => void;
   readonly game_select_brick: (a: number, b: number, c: number) => number;

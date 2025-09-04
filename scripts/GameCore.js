@@ -8,8 +8,10 @@ import {Game} from "./Game.js";
 export function GameCore () {
 	// members
 	this.gameObject;
+	this.wasmMemoryObj;
 	this.database; 
 	this.songData;
+	this.songMP3Buffers;
 	this.isLoaded;
 	this.isSongLoaded;
 	
@@ -28,8 +30,10 @@ export function GameCore () {
 	this.audioTimeSafetyBuffer = 0.15;
 }
 
-GameCore.prototype.init = async function () {
+GameCore.prototype.init = async function (wasmMemoryObj) {
 	if(this.isLoaded){ return; }
+	
+	this.wasmMemoryObj = wasmMemoryObj;
 	
 	let loader = new load.Loader();
 	
@@ -60,6 +64,7 @@ GameCore.prototype.init = async function () {
 	
 	this.gameObject = wasm.Game.new();
     this.songData = {};
+	this.songMP3Buffers = {};
 	
 	this.isLoaded = true;
 }
@@ -152,10 +157,8 @@ GameCore.prototype.modifySong = function(name, artist, difficulty, bpm, brickSpe
 	}
 }
 
-GameCore.prototype.loadSong = async function(songData){
-	// !!! creating a new game to load a new song? Or create a load_song method? wasm garbage collected?
-	this.isSongLoaded = false;
-
+GameCore.prototype.loadSong = function(songData){
+	// !!! creating a new game to load a new song? Or create a load_song method in src? wasm garbage collection?
 	let songObject = this.database.loadSong(songData);
 	
 	this.gameObject = wasm.Game.new(songObject.bpm, songObject.brickSpeed, songObject.duration);
@@ -189,18 +192,28 @@ GameCore.prototype.loadSong = async function(songData){
 		jsonname: songObject.jsonname
 	}
 
-	// fetch the mp3
-		// !!! add error handling 
-	await fetch("./assets/music/" + this.songData.filename)
-		.then(res => res.arrayBuffer())
-		.then(res => this.audioContext.decodeAudioData(res))
-		.then(res => { this.songBuffer = res; }
-	);
+	if(this.songMP3Buffers[this.songData.filename]){
+		this.songBuffer = this.songMP3Buffers[this.songData.filename];
+	}
+	else{
+		throw Error("The audio of the song trying to be played has not been loaded");
+	}
 	
 	this.isSongLoaded = true;
 }
 
-GameCore.prototype.loadMP3 = async function(file){
+GameCore.prototype.loadSongAudio = async function(songData){
+	// fetch the mp3
+		// !!! add error handling 
+	await fetch("./assets/music/" + songData.filename)
+		.then(res => res.arrayBuffer())
+		.then(res => this.audioContext.decodeAudioData(res))
+		.then(res => { this.songMP3Buffers[songData.filename] = res; }
+	);
+}
+
+// for user uploads of audio files (mp3 and wav)
+GameCore.prototype.loadNewAudio = async function(file){
 	this.isSongLoaded = false;
 
 	// !!! add error handling
@@ -213,6 +226,7 @@ GameCore.prototype.loadMP3 = async function(file){
 	this.isSongLoaded = true;
 }
 
+// for user uploads of song files including audio (mp3 and wav) and game data json
 GameCore.prototype.userLoadSong = async function(songAudioFile, songJsonFile){
 	this.isSongLoaded = false;
 
